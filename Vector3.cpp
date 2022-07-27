@@ -2,7 +2,7 @@
 #include <cmath>		//sqrt
 
 Vector3::Vector3()
-	: x(0), y(0)
+	: x(0), y(0), z(0)
 {
 }
 
@@ -19,8 +19,9 @@ float Vector3::length() const
 Vector3& Vector3::normalize()
 {
 	float len = length();
+
 	if (len != 0) {
-		return *this;
+		return *this /= len;
 	}
 	return *this;
 }
@@ -45,7 +46,7 @@ Vector3 Vector3::operator-() const
 	return Vector3(-x, -y, -z);
 }
 
-Vector3 Vector3::operator+=(const Vector3& v)
+Vector3& Vector3::operator+=(const Vector3& v)
 {
 	x += v.x;
 	y += v.y;
@@ -53,7 +54,7 @@ Vector3 Vector3::operator+=(const Vector3& v)
 	return *this;
 }
 
-Vector3 Vector3::operator-=(const Vector3& v)
+Vector3& Vector3::operator-=(const Vector3& v)
 {
 	x -= v.x;
 	y -= v.y;
@@ -61,14 +62,14 @@ Vector3 Vector3::operator-=(const Vector3& v)
 	return *this;
 }
 
-Vector3 Vector3::operator*=(float s) {
+Vector3& Vector3::operator*=(float s) {
 	x += s;
 	y += s;
 	z += s;
 	return *this;
 }
 
-Vector3 Vector3::operator/=(float s) {
+Vector3& Vector3::operator/=(float s) {
 	x /= s;
 	y /= s;
 	z /= s;
